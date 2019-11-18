@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane fx:id="borderPane" prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <GridPane fx:id="squares" onKeyPressed="#handleKeyPress" BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+            </GridPane>
+         </center>
+         <right>
+            <Accordion fx:id="sidebar" BorderPane.alignment="CENTER">
+              <panes>
+                <TitledPane fx:id="Goals" animated="false" onMouseClicked="#GoalClick" text="Goals">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="goal" prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn fx:id="entity" prefWidth="96.0" text="entity" />
+                                    <TableColumn fx:id="status" prefWidth="103.0" text="status" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </Pane>
+                     </content>
+                </TitledPane>
+                <TitledPane fx:id="Keybindings" animated="false" onMouseClicked="#KeybindingClick" text="Keybindings">
+                     <content>
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="instruction" prefHeight="200.0" prefWidth="200.0">
+                                 <columns>
+                                    <TableColumn fx:id="keybind" prefWidth="100.0" text="Keybind" />
+                                    <TableColumn fx:id="action" prefWidth="99.0" text="Action" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </Pane>
+                     </content>
+                </TitledPane>
+              </panes>
+            </Accordion>
+         </right>
+         <left>
+            <TableView fx:id="glossary" prefHeight="200.0" prefWidth="229.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="items" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Item" />
+                <TableColumn fx:id="descriptions" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="Description" />
+              </columns>
+            </TableView>
+         </left>
+      </BorderPane>
+   </children>
+</StackPane>

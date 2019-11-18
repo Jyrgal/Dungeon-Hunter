@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="unsw.dungeon.Dungeon" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/Dungeon.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="947" width="258" x="600" y="-230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="2" language="java" name="unsw.dungeon.Direction" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/Direction.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="155" width="135" x="197" y="-230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <interface id="3" language="java" name="unsw.dungeon.Interact" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/Interact.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="273" x="600" y="1150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="unsw.dungeon.enemyState" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/enemyState.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="188" x="372" y="-230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="unsw.dungeon.Entity" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="353" width="263" x="600" y="757"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="unsw.dungeon.CustomImage" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/CustomImage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="168" x="898" y="-230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="unsw.dungeon.imageView" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/imageView.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="137" width="149" x="1106" y="-230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="unsw.dungeon.StartScreen" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/StartScreen.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="209" width="194" x="1295" y="-230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="unsw.dungeon.StartScreenController" project="W12B-Mavericks" 
+    file="/W12B-Mavericks/src/unsw/dungeon/StartScreenController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="191" width="195" x="1529" y="-230"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="10">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="11" name="entities"/>      
+      <multiplicity id="12" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="13">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="14" name="interact"/>      
+      <multiplicity id="15" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
