@@ -51,6 +51,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import unsw.dungeon.Dungeon;
@@ -539,6 +540,8 @@ public class DungeonController {
         		staff.useStaff(dungeon);
         	}
         	break;
+        case D:
+        	dungeon.dropKey();
         default:
             break;
         }
@@ -729,6 +732,31 @@ public class DungeonController {
 		  	  System.out.println("Directory " + listOfFiles[i].getName());
 		    }
 		}
+	}
+	
+	public void displayKeyError() {
+		final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(dungeonStage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Wrong Key! Press d to drop current key"));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+	}
+	
+	public void addEntity(Key key) {
+		ObservableList<Node> childrens = squares.getChildren();
+    	if (childrens.size() == 0) {
+    		System.out.println("no nodes");
+    	}
+    	for(Node node : childrens) {
+    		System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
+    	    if(node instanceof ImageView && squares.getRowIndex(node) == key.getX() && squares.getColumnIndex(node) == key.getY()) {
+    	        squares.add((key).getImageView(), squares.getRowIndex(node), squares.getColumnIndex(node));
+    	        break;
+    	    }
+    	}
 	}
 }
 

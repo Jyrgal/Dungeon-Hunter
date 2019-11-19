@@ -1,5 +1,6 @@
 package unsw.dungeon.interactEntity;
 
+import javafx.stage.Stage;
 import unsw.dungeon.*;
 import unsw.dungeon.EntityList.*;
 
@@ -26,6 +27,7 @@ public class DoorInteract implements Interact {
 		
 		//no key and door is locked
 		if(player.findKey(door) == false && door.checkLocked() == true) {
+			dungeon.displayKeyError();
 			return false;
 		}
 		return true;

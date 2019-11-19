@@ -662,4 +662,16 @@ public class Dungeon {
 	public ArrayList<Entity> getAllEntities() {
 		return (ArrayList<Entity>) this.entities;
 	}
+	
+	public void displayKeyError() {
+		this.controller.displayKeyError();
+	}
+	
+	public void dropKey() {
+		Key key = player.searchKey();
+		player.removeItem(key);
+		entities.add(key);
+		key.teleport(player.getX(), player.getY());
+		this.controller.addEntity(key);
+	}
 }

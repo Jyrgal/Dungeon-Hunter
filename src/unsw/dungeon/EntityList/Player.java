@@ -87,6 +87,15 @@ public class Player extends Entity implements playerSubject{
     public void removeItem(Entity item) {
     	inventory.remove(item);
     }
+    
+    public Key searchKey () {
+    	for (Entity item: inventory) {
+    		if (item instanceof Key) {
+    			return (Key)item;
+    		}
+    	}
+    	return null;
+    }
 
     /**
      * Check if key in inventory is available

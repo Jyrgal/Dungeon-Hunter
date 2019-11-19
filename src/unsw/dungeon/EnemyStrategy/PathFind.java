@@ -95,38 +95,54 @@ public abstract class PathFind {
 	            // picked vertex. 
 	            Point2D portalPoint = null;
 	            for (int vertexIndex = 0; vertexIndex < nVertices;  vertexIndex++) {
-//	            	if (portalPoints.contains(nearestVertex)) {
-//	            		portalPoint = dungeon.convertInteger(nearestVertex);
-//	            		int entityUpX = (int) portalPoint.getX();
-//		            	int entityUpY = (int) (portalPoint.getY() - 1);
-//		            	Up = entityUpX + (entityUpY * dungeon.getWidth());
-//		            	UpPoint = new Point2D.Double(entityUpX, entityUpY);
-//		            	
-//		            	int entityLeftX = (int) (portalPoint.getX() - 1);
-//		            	int entityLeftY = (int) portalPoint.getY();
-//		            	Left = entityLeftX + (entityLeftY * dungeon.getWidth());
-//		            	LeftPoint = new Point2D.Double(portalPoint.getX() - 1, portalPoint.getY());
-//		            	
-//		            	int entityRightX = (int) (portalPoint.getX() + 1);
-//		            	int entityRightY = (int) portalPoint.getY();
-//		            	Right = entityRightX + (entityRightY * dungeon.getWidth());
-//		            	RightPoint = new Point2D.Double(portalPoint.getX() + 1, portalPoint.getY());
-//		            	
-//		            	int entityDownX = (int) portalPoint.getX();
-//		            	int entityDownY = (int) (portalPoint.getY() + 1);
-//		            	Down = entityDownX + (entityDownY * dungeon.getWidth());
-//		            	DownPoint = new Point2D.Double(portalPoint.getX(), portalPoint.getY() + 1);
-//		            	
-//		            	if (dungeon.check(portalPoint, UpPoint)) {
-//		            		adjacencyMatrix[nearestVertex][Up] = 1;
-//		            	} else if (dungeon.check(portalPoint, LeftPoint)) {
-//		            		adjacencyMatrix[nearestVertex][Left] = 1;
-//		            	} else if (dungeon.check(portalPoint, RightPoint)) {
-//		            		adjacencyMatrix[nearestVertex][Right] = 1;
-//		            	}	else if (dungeon.check(portalPoint, DownPoint)) {
-//		            		adjacencyMatrix[nearestVertex][Down] = 1;
-//		            	}
-//	            	}
+	            	if (portalPoints.contains(nearestVertex)) {         	
+	            		portalPoint = dungeon.convertInteger(nearestVertex);
+	            		//System.out.println("source portal at" + (int) sourcePortal.getX() + ":" + (int) sourcePortal.getY());
+	            		//System.out.println("end at" + (int) portalPoint.getX() + ":" + (int) portalPoint.getY());
+	            		int entityUpX = (int) portalPoint.getX();
+		            	int entityUpY = (int) (portalPoint.getY() - 1);
+		            	Up = entityUpX + (entityUpY * dungeon.getWidth());
+		            	UpPoint = new Point2D.Double(entityUpX, entityUpY);
+		            	
+		            	
+		            	int entityLeftX = (int) (portalPoint.getX() - 1);
+		            	int entityLeftY = (int) portalPoint.getY();
+		            	Left = entityLeftX + (entityLeftY * dungeon.getWidth());
+		            	LeftPoint = new Point2D.Double(portalPoint.getX() - 1, portalPoint.getY());
+		            	
+		            	
+		            	int entityRightX = (int) (portalPoint.getX() + 1);
+		            	int entityRightY = (int) portalPoint.getY();
+		            	Right = entityRightX + (entityRightY * dungeon.getWidth());
+		            	RightPoint = new Point2D.Double(portalPoint.getX() + 1, portalPoint.getY());
+		            	
+		            	
+		            	int entityDownX = (int) portalPoint.getX();
+		            	int entityDownY = (int) (portalPoint.getY() + 1);
+		            	Down = entityDownX + (entityDownY * dungeon.getWidth());
+		            	DownPoint = new Point2D.Double(portalPoint.getX(), portalPoint.getY() + 1);
+		            	
+		            	
+		            	if (dungeon.check(portalPoint, UpPoint)) {
+		            		adjacencyMatrix[nearestVertex][Up] = 1;
+		            		//System.out.println("move Up" + (int) UpPoint.getX() + ":" + (int) UpPoint.getY());
+		            	} 
+		            	
+		            	if (dungeon.check(portalPoint, LeftPoint)) {
+		            		adjacencyMatrix[nearestVertex][Left] = 1;
+		            		//System.out.println("move left" + (int) LeftPoint.getX() + ":" + (int) LeftPoint.getY());
+		            	} 
+		            	
+		            	if (dungeon.check(portalPoint, RightPoint)) {
+		            		adjacencyMatrix[nearestVertex][Right] = 1;
+		            		//System.out.println("move Right" + (int) RightPoint.getX() + ":" + (int) RightPoint.getY());
+		            	}	
+		            	
+		            	if (dungeon.check(portalPoint, DownPoint)) {
+		            		adjacencyMatrix[nearestVertex][Down] = 1;
+		            		//System.out.println("move Down" + (int) DownPoint.getX() + ":" + (int) DownPoint.getY());
+		            	}
+	            	}
 //	            	Point2D portalPoint = dungeon.convertInteger(nearestVertex);
 //	        		Portal portal = dungeon.checkPortal((int)portalPoint.getX(),(int)portalPoint.getY());
 //		        	if (portal != null) {
@@ -169,12 +185,25 @@ public abstract class PathFind {
 	                    shortestDistances[vertexIndex] = shortestDistance + edgeDistance; 
 	                }
 	                
-	                if (portalPoint != null) {
-		            		adjacencyMatrix[nearestVertex][Up] = 0;
-		            		adjacencyMatrix[nearestVertex][Left] = 0;
-		            		adjacencyMatrix[nearestVertex][Right] = 0;
-		            		adjacencyMatrix[nearestVertex][Down] = 0;
-	                }
+//	                if (dungeon.check(portalPoint, UpPoint)) {
+//	            		adjacencyMatrix[nearestVertex][Up] = 0;
+//	            		//System.out.println("move Up" + (int) UpPoint.getX() + ":" + (int) UpPoint.getY());
+//	            	} 
+//	            	
+//	            	if (dungeon.check(portalPoint, LeftPoint)) {
+//	            		adjacencyMatrix[nearestVertex][Left] = 0;
+//	            		//System.out.println("move left" + (int) LeftPoint.getX() + ":" + (int) LeftPoint.getY());
+//	            	} 
+//	            	
+//	            	if (dungeon.check(portalPoint, RightPoint)) {
+//	            		adjacencyMatrix[nearestVertex][Right] = 0;
+//	            		//System.out.println("move Right" + (int) RightPoint.getX() + ":" + (int) RightPoint.getY());
+//	            	}	
+//	            	
+//	            	if (dungeon.check(portalPoint, DownPoint)) {
+//	            		adjacencyMatrix[nearestVertex][Down] = 0;
+//	            		//System.out.println("move Down" + (int) DownPoint.getX() + ":" + (int) DownPoint.getY());
+//	            	}
 	            }
         	}
         } 
