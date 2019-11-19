@@ -488,22 +488,96 @@ public class Dungeon {
     
     public void makeGraph() {
     	for (int i = 0; i < this.width * this.height; i++) {
+//    		Point2D currPoint = convertInteger(i);
+//    		Portal portal = checkPortal((int)currPoint.getX(),(int)currPoint.getY());
+//    		if (portal != null) {
+//    			Portal nextPortal = (Portal)findSpecificEntity(portal);
+//    			int coordinate = nextPortal.getX() + (nextPortal.getY() * width);
+//    			System.out.println("from " + i + "to " + coordinate);
+//    			System.out.println("from " + (int)currPoint.getX() + ":"+(int)currPoint.getY() + "to " + nextPortal.getX() + ":" + nextPortal.getY());
+//    			//System.out.println("portal found from: " + (int)destinationPoint.getX() + " : "+ (int)destinationPoint.getY() + "to " + nextPortal.getX() + " : "+ nextPortal.getY());
+//    			adjacenyMatrix[i][coordinate] = 1;
+//    			break;
+//    		}	else {
 		            for (int j = 0; j < this.width * this.height; j++) {
-		            	Point2D currPoint = convertInteger(i);
-		        		Portal portal = checkPortal((int)currPoint.getX(),(int)currPoint.getY());
-		        		if (portal != null) {
-		        			Portal nextPortal = (Portal)findSpecificEntity(portal);
-		        			int coordinate = nextPortal.getX() + (nextPortal.getY() * width);
-		        			System.out.println("from " + i + "to " + coordinate);
-		        			System.out.println("from " + (int)currPoint.getX() + ":"+(int)currPoint.getY() + "to " + nextPortal.getX() + ":" + nextPortal.getY());
-		        			//System.out.println("portal found from: " + (int)destinationPoint.getX() + " : "+ (int)destinationPoint.getY() + "to " + nextPortal.getX() + " : "+ nextPortal.getY());
-		        			adjacenyMatrix[i][coordinate] = 1;
-		        			break;
-		        		}		
-		            		adjacenyMatrix[i][j] = matrixFill(i, j);
+		            	
+		            	adjacenyMatrix[i][j] = matrixFill(i, j);
 		        		
 		            } 
+    		//}
         }
+    	
+        //path on portal
+        for (Integer portal: portals) {
+        	//marking other portal as 1
+        	Point2D cPortal = this.convertInteger(portal);
+        	Portal currPortal = this.checkPortal((int)cPortal.getX(), (int)cPortal.getY());
+        	Portal endPortal = (Portal) this.findSpecificEntity(currPortal);
+        	Point2D ePortal = new Point2D.Double(endPortal.getX(), endPortal.getY());
+        	Integer coordinate = this.convertPoint(ePortal);
+        	adjacenyMatrix[portal][coordinate] = 1;
+        	System.out.println("source portal at" + (int) currPortal.getX() + ":" + (int) currPortal.getY());
+    		System.out.println("end portal at" + (int) ePortal.getX() + ":" + (int) ePortal.getY());
+    		
+    		
+    		int entityUpX = (int) cPortal.getX();
+        	int entityUpY = (int) (cPortal.getY() - 1);
+        	int Up = entityUpX + (entityUpY * this.getWidth());
+        	Point2D UpPoint = new Point2D.Double(entityUpX, entityUpY);
+        	
+        	
+        	int entityLeftX = (int) (cPortal.getX() - 1);
+        	int entityLeftY = (int) cPortal.getY();
+        	int Left = entityLeftX + (entityLeftY * this.getWidth());
+        	Point2D LeftPoint = new Point2D.Double(entityLeftX, entityLeftY);
+        	
+        	
+        	int entityRightX = (int) (cPortal.getX() + 1);
+        	int entityRightY = (int) cPortal.getY();
+        	int Right = entityRightX + (entityRightY * this.getWidth());
+        	Point2D RightPoint = new Point2D.Double(entityRightX, entityRightY);
+        	
+        	
+        	int entityDownX = (int) cPortal.getX();
+        	int entityDownY = (int) (cPortal.getY() + 1);
+        	int Down = entityDownX + (entityDownY * this.getWidth());
+        	Point2D DownPoint = new Point2D.Double(entityDownX, entityDownY);
+        	
+        	if (checkTile(entityUpX, entityUpY)) {
+        		//adjacenyMatrix[Up][portal] = 1;
+        		System.out.println(adjacenyMatrix[Up][portal] + ": before move Up" + (int) UpPoint.getX() + ":" + (int) UpPoint.getY());
+        		System.out.println("opposite way" + adjacenyMatrix[portal][Up]);
+        	} 
+        	
+        	if (checkTile(entityLeftX, entityLeftY)) {
+        		//adjacenyMatrix[Left][portal] = 1;
+        		System.out.println(adjacenyMatrix[Left][portal] + ": before move left"  + (int) LeftPoint.getX() + ":" + (int) LeftPoint.getY());
+        		System.out.println("opposite way" + adjacenyMatrix[portal][Left]);
+        	} 
+        	
+        	if (checkTile(entityRightX, entityRightY)) {
+        		//adjacenyMatrix[Right][portal] = 1;
+        		System.out.println(adjacenyMatrix[Right][portal] + ": before move right" + (int) RightPoint.getX() + ":" + (int) RightPoint.getY());
+        		System.out.println("opposite way" + adjacenyMatrix[portal][Right]);
+        	}	
+        	
+        	if (checkTile(entityDownX, entityDownY)) {
+        		//adjacenyMatrix[Down][portal] = 1;
+        		System.out.println(adjacenyMatrix[Down][portal] + ": before move down"  + (int) DownPoint.getX() + ":" + (int) DownPoint.getY());
+        		System.out.println("opposite way" + adjacenyMatrix[portal][Down]);
+        	}
+        }
+        
+//      //paths ONTO portal (no portal on starting point), correct chcekd
+//    	if (portalPoints.contains(v) && !portalPoints.contains(u) && dungeon.check(sourcePortal, portalPoint)) {
+//    		//graph[u][v] = 1;
+//    		//System.out.println("possible path found: "+ (int) sourcePortal.getX() + ":" + (int) sourcePortal.getY() + " to " + (int) portalPoint.getX() + ":" + (int) portalPoint.getY());
+//    		if (dungeon.checkTile((int)sourcePortal.getX(), (int)sourcePortal.getY())) {
+//    			graph[u][v] = 1;
+//    			//System.out.println("oh found a portal! can move onto: " + graph[u][v]);
+//        		System.out.println("move from" + (int) sourcePortal.getX() + ":" + (int) sourcePortal.getY() + " to " + (int) portalPoint.getX() + ":" + (int) portalPoint.getY());
+//    		}
+//    	}
     	
     	System.out.println(Arrays.toString(adjacenyMatrix[286]));
     }
