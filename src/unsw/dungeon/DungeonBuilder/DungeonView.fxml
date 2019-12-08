@@ -27,14 +27,16 @@
          <right>
             <Accordion fx:id="sidebar" BorderPane.alignment="CENTER">
               <panes>
-                <TitledPane fx:id="Goals" animated="false" onMouseClicked="#GoalClick" text="Goals">
+                <TitledPane fx:id="Goals" animated="false" minWidth="300.0" onMouseClicked="#GoalClick" text="Goals">
                      <content>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="goal" prefHeight="200.0" prefWidth="200.0">
+                              <TableView fx:id="goal" prefHeight="200.0" prefWidth="298.0">
                                  <columns>
-                                    <TableColumn fx:id="entity" prefWidth="96.0" text="entity" />
-                                    <TableColumn fx:id="status" prefWidth="103.0" text="status" />
+                                    <TableColumn fx:id="entity" prefWidth="84.0" text="entity" />
+                                    <TableColumn fx:id="status" minWidth="9.0" prefWidth="67.0" text="status" />
+                                    <TableColumn fx:id="aimGoal" minWidth="0.0" prefWidth="79.0" text="aim" />
+                                    <TableColumn fx:id="idGoal" prefWidth="67.0" text="id" />
                                  </columns>
                               </TableView>
                            </children>

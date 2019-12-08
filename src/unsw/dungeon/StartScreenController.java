@@ -39,6 +39,7 @@ public class StartScreenController {
 		
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(map);
         DungeonController controller = dungeonLoader.loadController();
+        controller.setReset(map);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("DungeonBuilder/DungeonView.fxml"));
         controller.setStage(startStage);
         loader.setController(controller);
@@ -54,16 +55,16 @@ public class StartScreenController {
 	}
 	
 	public void getMaps() {
-		File maps = new File("dungeons/");
+		File maps = new File("dungeons");
 		File[] listOfFiles = maps.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
 		    if (listOfFiles[i].isFile()) {
 		    	//add each file name to list
 		    	dungeonz.add(listOfFiles[i].getName());
-			    System.out.println("File " + listOfFiles[i].getName());
+			    //System.out.println("File " + listOfFiles[i].getName());
 		    } else if (listOfFiles[i].isDirectory()) {
-		  	  System.out.println("Directory " + listOfFiles[i].getName());
+		  	  //System.out.println("Directory " + listOfFiles[i].getName());
 		    }
 		}
 	}

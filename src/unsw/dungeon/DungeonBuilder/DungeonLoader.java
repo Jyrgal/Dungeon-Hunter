@@ -31,6 +31,8 @@ import unsw.dungeon.Goals.GoalComponent;
 public abstract class DungeonLoader {
 
     private JSONObject json;
+    
+    private int goalID = 0;
 
     public DungeonLoader(String filename) throws FileNotFoundException {
         json = new JSONObject(new JSONTokener(new FileReader("dungeons/" + filename)));
@@ -53,47 +55,57 @@ public abstract class DungeonLoader {
         }
         
         JSONObject jsonGoals = json.getJSONObject("goal-condition");
-        GoalComponent goal = loadGoals(jsonGoals, dungeon);
+        String goalType = jsonGoals.getString("goal");
+        GoalComponent goal = loadGoals(jsonGoals, dungeon, goalType);
         dungeon.setGoal(goal);
         return dungeon;
     }
     
-    public GoalComponent loadGoals(JSONObject json, Dungeon dungeon) {
+    public GoalComponent loadGoals(JSONObject json, Dungeon dungeon, String goalType) {
     	//if it is an and/or
     	String goal = json.getString("goal");
     	if (goal.contentEquals("AND")) {
     		GoalGroup goalGroup = new GoalGroup(2);
     		JSONArray subgoals = json.getJSONArray("subgoals");
+    		
     		for (int i = 0; i < subgoals.length(); i++) {
-    			goalGroup.add(loadGoals(subgoals.getJSONObject(i), dungeon));
+    			goalGroup.add(loadGoals(subgoals.getJSONObject(i), dungeon, "AND"));	
     		}
+    		goalID++;
+    		Player player = dungeon.getPlayer();
+    		player.addPlayerObserver(goalGroup);
     		return goalGroup;
     	}	else if (goal.contentEquals("OR")) {
     		GoalGroup goalGroup = new GoalGroup(1);
     		JSONArray subgoals = json.getJSONArray("subgoals");
     		for (int i = 0; i < subgoals.length(); i++) {
-    			goalGroup.add(loadGoals(subgoals.getJSONObject(i), dungeon));
+    			goalGroup.add(loadGoals(subgoals.getJSONObject(i), dungeon, "OR"));
     		}
+    		goalID++;
+    		Player player = dungeon.getPlayer();
+    		player.addPlayerObserver(goalGroup);
     		return goalGroup;
     	}
     	
     	else {
+    		
     		if (goal.contentEquals("boulders")) {
     			ArrayList<Entity> switchList = dungeon.findEntityList("switch");
-    			Goal switchGoal = new Goal("switch", switchList.size());
+    			Goal switchGoal = new Goal("switch", switchList.size(), goalType, goalID);
     			for (Entity currEntity: switchList) {
         			currEntity.addEntityObserver(switchGoal);
         		}
     			return switchGoal;
+    		}	else {
+	    		ArrayList<Entity> entityList = dungeon.findEntityList(goal);
+	    		Goal finalGoal = new Goal(goal, entityList.size(), goalType, goalID);
+	    		
+	    		
+	    		for (Entity currEntity: entityList) {
+	    			currEntity.addEntityObserver(finalGoal);
+	    		}
+	    		return finalGoal;
     		}
-    		ArrayList<Entity> entityList = dungeon.findEntityList(goal);
-    		System.out.println("adding " + goal + " as a goal");
-    		Goal finalGoal = new Goal(goal, entityList.size());
-    		
-    		for (Entity currEntity: entityList) {
-    			currEntity.addEntityObserver(finalGoal);
-    		}
-    		return finalGoal;
     	}
     }
     
@@ -101,7 +113,7 @@ public abstract class DungeonLoader {
         String type = json.getString("type");
         int x = json.getInt("x");
         int y = json.getInt("y");
-        System.out.println("hi" + x + y);
+        //System.out.println("hi" + x + y);
         
         Entity entity = null;
         switch (type) {

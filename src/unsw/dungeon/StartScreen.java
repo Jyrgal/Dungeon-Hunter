@@ -7,6 +7,12 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import unsw.dungeon.DungeonBuilder.DungeonApplication;
@@ -44,6 +50,15 @@ public class StartScreen extends Application{
 	       StartScreenController controller = loader.getController();
 	       controller.setStage(this.primaryStage);
 	       Scene scene = new Scene(mainLayout);
+	       BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
+	       
+	       Image image = new Image("/images/menu.png");
+	       Background background = new Background(new BackgroundImage(image,
+	               BackgroundRepeat.NO_REPEAT,
+	               BackgroundRepeat.NO_REPEAT,
+	               BackgroundPosition.CENTER,
+	               bSize));
+	       mainLayout.setBackground(background);
 	       primaryStage.setScene(scene);
 	       primaryStage.show();
 	}
@@ -62,7 +77,7 @@ public class StartScreen extends Application{
 //        root.requestFocus();
 //        primaryStage.setScene(scene);
 //        primaryStage.show();
-		System.out.println("hi");
+		//System.out.println("hi");
 		//javafx.application.Application.launch(DungeonApplication.class);
 	}
 	

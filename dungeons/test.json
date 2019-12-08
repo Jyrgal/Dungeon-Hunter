@@ -603,7 +603,7 @@
         ]
       },
       {
-        "goal": "OR",
+        "goal": "AND",
         "subgoals": [
           {
             "goal": "boulders"

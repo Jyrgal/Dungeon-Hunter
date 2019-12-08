@@ -101,6 +101,12 @@ public class DungeonController {
     @FXML
     public TableColumn <Goal, Integer> status;
     
+    @FXML
+    public TableColumn <Goal, String> aimGoal;
+    
+    @FXML
+    public TableColumn <Goal, Integer> idGoal;
+    
     @FXML 
     private TableView <String> instruction;
     
@@ -109,7 +115,7 @@ public class DungeonController {
     
     @FXML
     public TableColumn <String, String> action;
-    
+
     @FXML
     public Accordion sidebar;
     
@@ -239,34 +245,34 @@ public class DungeonController {
     public ArrayList<glossaryItems> getItems() {
     	ArrayList<glossaryItems> list = new ArrayList<>();
     	
-    	ImageView playerImage = new ImageView (new Image("/nakedman.png"));
-    	ImageView wallImage1 = new ImageView (new Image("/yellowtree.png"));
-    	ImageView wallImage2 = new ImageView (new Image("/orangetree.png"));
-    	ImageView wallImage3 = new ImageView (new Image("/greentree.png"));
-    	ImageView exitImage = new ImageView (new Image("/exit.png"));
-        ImageView treasureImage = new ImageView (new Image("/Treasure Chest closed 32x32.png"));
-        ImageView doorcloseImage  =new ImageView (new Image("/closedoor.png"));
-        ImageView dooropenImage = new ImageView (new Image("/opendoor.png"));
-        ImageView keyImage = new ImageView (new Image("/key.png"));
-        ImageView boulderImage =new ImageView (new Image("/boulder.png"));
-        ImageView floorswitchImage = new ImageView (new Image("/pressure_plate.png"));
-        ImageView portalImage =new ImageView (new Image("/portal.png"));
-        ImageView enemyImage = new ImageView (new Image("/enemyaxe.png"));
-        ImageView swordImage =new ImageView (new Image("/bigsword.png"));
-        ImageView potionImage = new ImageView (new Image("/brilliant_blue_new.png"));
-        ImageView bloodImage = new ImageView (new Image("/blood.png"));
-        ImageView manaImage = new ImageView (new Image("/mana.png"));
-        ImageView rodImage = new ImageView (new Image("/rod.png"));
-        ImageView fireImage = new ImageView (new Image("/fire.png"));
-        ImageView airImage =new ImageView (new Image("/air.png"));
-        ImageView waterImage = new ImageView (new Image("/water.png"));
-        ImageView wizardImage =new ImageView (new Image("/wizard.png"));
-		ImageView baImage = new ImageView(new Image("/bloodair.png"));
-		ImageView bwImage = new ImageView(new Image("/bloodwater.png"));
-		ImageView bfImage = new ImageView(new Image("/bloodfire.png"));
-		ImageView maImage = new ImageView(new Image("/manaair.png"));
-		ImageView mwImage = new ImageView(new Image("/manawater.png"));
-		ImageView mfImage = new ImageView(new Image("/manafire.png"));
+    	ImageView playerImage = new ImageView (new Image("/images/nakedman.png"));
+    	ImageView wallImage1 = new ImageView (new Image("/images/yellowtree.png"));
+    	ImageView wallImage2 = new ImageView (new Image("/images/orangetree.png"));
+    	ImageView wallImage3 = new ImageView (new Image("/images/greentree.png"));
+    	ImageView exitImage = new ImageView (new Image("/images/exit.png"));
+        ImageView treasureImage = new ImageView (new Image("/images/Treasure Chest closed 32x32.png"));
+        ImageView doorcloseImage  =new ImageView (new Image("/images/closedoor.png"));
+        ImageView dooropenImage = new ImageView (new Image("/images/opendoor.png"));
+        ImageView keyImage = new ImageView (new Image("/images/key.png"));
+        ImageView boulderImage =new ImageView (new Image("/images/boulder.png"));
+        ImageView floorswitchImage = new ImageView (new Image("/images/pressure_plate.png"));
+        ImageView portalImage =new ImageView (new Image("/images/portal.png"));
+        ImageView enemyImage = new ImageView (new Image("/images/enemyaxe.png"));
+        ImageView swordImage =new ImageView (new Image("/images/bigsword.png"));
+        ImageView potionImage = new ImageView (new Image("/images/brilliant_blue_new.png"));
+        ImageView bloodImage = new ImageView (new Image("/images/blood.png"));
+        ImageView manaImage = new ImageView (new Image("/images/mana.png"));
+        ImageView rodImage = new ImageView (new Image("/images/rod.png"));
+        ImageView fireImage = new ImageView (new Image("/images/fire.png"));
+        ImageView airImage =new ImageView (new Image("/images/air.png"));
+        ImageView waterImage = new ImageView (new Image("/images/water.png"));
+        ImageView wizardImage =new ImageView (new Image("/images/wizard.png"));
+		ImageView baImage = new ImageView(new Image("/images/bloodair.png"));
+		ImageView bwImage = new ImageView(new Image("/images/bloodwater.png"));
+		ImageView bfImage = new ImageView(new Image("/images/bloodfire.png"));
+		ImageView maImage = new ImageView(new Image("/images/manaair.png"));
+		ImageView mwImage = new ImageView(new Image("/images/manawater.png"));
+		ImageView mfImage = new ImageView(new Image("/images/manafire.png"));
 		
 		glossaryItems playerItem = new glossaryItems(playerImage, "this is the player model");
 		glossaryItems wallItem1 = new glossaryItems(wallImage1, "this is a wall");
@@ -332,11 +338,11 @@ public class DungeonController {
     
     @FXML
     public void initializeDungeon() {
-        Image ground1 = new Image("/grass1.png");
-        Image ground2 = new Image("/grass2.png");
-        Image ground3 = new Image("/grass3.png");
-        Image ground4 = new Image("/grass4.png");
-        Image ground5 = new Image("/grass5.png");
+        Image ground1 = new Image("/images/grass1.png");
+        Image ground2 = new Image("/images/grass2.png");
+        Image ground3 = new Image("/images/grass3.png");
+        Image ground4 = new Image("/images/grass4.png");
+        Image ground5 = new Image("/images/grass5.png");
 
         // Add the ground first so it is below all other entities
         for (int x = 0; x < dungeon.getWidth(); x++) {
@@ -401,7 +407,7 @@ public class DungeonController {
         
         
 	    for (GoalComponent goal: SingleGoals) {
-		   System.out.println("========== IN IN IN ==========");
+		   //System.out.println("========== IN IN IN ==========");
 		   SimpleIntegerProperty tableGoal = ((Goal)goal).NeedCompleteProperty();
 		   tableGoal.addListener((ChangeListener) (observable, oldValue, newValue) -> {		   
 			   if (oldValue != newValue) {
@@ -415,6 +421,8 @@ public class DungeonController {
 	    
 	    entity.setCellValueFactory(new PropertyValueFactory<Goal, String>("typeEntity"));
 	    status.setCellValueFactory(new PropertyValueFactory<Goal, Integer>("NeedComplete"));
+	    aimGoal.setCellValueFactory(new PropertyValueFactory<Goal, String>("goalAim"));
+	    idGoal.setCellValueFactory(new PropertyValueFactory<Goal, Integer>("ID"));
 	    goal.setItems(data);
 	    goal.setFocusTraversable(false);
 	    goal.setMouseTransparent(true);
@@ -508,17 +516,15 @@ public class DungeonController {
         case I:
             if (inventoryOpen == false) {
             	ArrayList<Entity> inventoryItems = (ArrayList<Entity>) player.getInventory();
-                for (Entity currEntity: inventoryItems) {
-                	System.out.println(currEntity);
-                }
+                
             	//inventory.show(dungeonStage);
             	//inventory.showInventoryView(dungeonStage);
                 inventory.showInventory(dungeonStage, inventoryItems);
                 //inventory.showInventoryImage(dungeonStage);
-            	System.out.println("hi");
+            	//System.out.println("hi");
             	inventoryOpen = true;
             }	else {
-            	System.out.println("hi");
+            	//System.out.println("hi");
             	inventory.hideInventory();
             	//inventory.hideInventoryImage();
             	//inventory.hide();
@@ -542,6 +548,16 @@ public class DungeonController {
         	break;
         case D:
         	dungeon.dropKey();
+        	break;
+        case N:
+        	stackPane.getChildren().remove(textPane); // remove pane to allow for reset
+			try {
+				continueDungeon();
+			} catch (IOException e) {
+				System.out.println("Exception in showMessage "+ e);
+				e.printStackTrace();
+			} // restart game
+                break;
         default:
             break;
         }
@@ -556,12 +572,12 @@ public class DungeonController {
     public void removeEntity(Entity entity) {    	
     	ObservableList<Node> childrens = squares.getChildren();
     	if (childrens.size() == 0) {
-    		System.out.println("no nodes");
+    		//System.out.println("no nodes");
     	}
     	for(Node node : childrens) {
     		//System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
     	    if(node instanceof ImageView && squares.getRowIndex(node) == entity.getX() && squares.getColumnIndex(node) == entity.getY()) {
-    	    	System.out.println("foundimage");
+    	    	//System.out.println("foundimage");
     	        squares.getChildren().remove(entity.getImageView());
     	        break;
     	    }
@@ -571,14 +587,14 @@ public class DungeonController {
     public void changeEntity(Entity entity) {    	
     	ObservableList<Node> childrens = squares.getChildren();
     	if (childrens.size() == 0) {
-    		System.out.println("no nodes");
+    		//System.out.println("no nodes");
     	}
     	for(Node node : childrens) {
-    		System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
+    		//System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
     	    if(node instanceof ImageView && squares.getRowIndex(node) == entity.getX() && squares.getColumnIndex(node) == entity.getY()) {
-    	    	System.out.println("foundimage");
+    	    	//System.out.println("foundimage");
     	    	squares.getChildren().remove(((Entity)entity).getImageView());
-    	    	ImageView door = new ImageView (new Image("opendoor.png"));
+    	    	ImageView door = new ImageView (new Image("/images/opendoor.png"));
     	        squares.add(door, squares.getRowIndex(node), squares.getColumnIndex(node));
     	        break;
     	    }
@@ -588,14 +604,14 @@ public class DungeonController {
     public void openDoor(Door door) {
     	ObservableList<Node> childrens = squares.getChildren();
     	if (childrens.size() == 0) {
-    		System.out.println("no nodes");
+    		//System.out.println("no nodes");
     	}
     	for(Node node : childrens) {
-    		System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
+    		//System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
     	    if(node instanceof ImageView && squares.getRowIndex(node) == door.getX() && squares.getColumnIndex(node) == door.getY()) {
-    	    	System.out.println("foundimage");
+    	    	//System.out.println("foundimage");
     	        squares.getChildren().remove(door.getImageView());
-    	        ImageView openDoor = new ImageView("/open_door.png");
+    	        ImageView openDoor = new ImageView("/images/open_door.png");
     	        squares.getChildren().add(openDoor);
     	        break;
     	    }
@@ -608,7 +624,7 @@ public class DungeonController {
      */
     public void showMessage(String string) {
         // Create message
-        String message = "Press R to reset the Level!!!";
+        String message = "Press R to reset the Level!!!!";
         Text text = new Text(string + "\n" + message); // text object
         
         textPane = new StackPane(); // message
@@ -674,6 +690,7 @@ public class DungeonController {
     public void dungeonReset() throws FileNotFoundException, IOException {
     	dungeonStage.close();
     	dungeonStage.setTitle("Dungeon");
+    	System.out.println(currMap);
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(currMap);
         DungeonController controller = dungeonLoader.loadController();
         
@@ -724,12 +741,12 @@ public class DungeonController {
 		File[] listOfFiles = maps.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {
-		    if (listOfFiles[i].isFile()) {
+		    if (listOfFiles[i].isFile() && !listOfFiles[i].getName().contentEquals(".DS_Store")) {
 		    	//add each file name to list
 		    	dungeonz.add(listOfFiles[i].getName());
-			    System.out.println("File " + listOfFiles[i].getName());
+			    //System.out.println("File " + listOfFiles[i].getName());
 		    } else if (listOfFiles[i].isDirectory()) {
-		  	  System.out.println("Directory " + listOfFiles[i].getName());
+		  	  //System.out.println("Directory " + listOfFiles[i].getName());
 		    }
 		}
 	}
@@ -745,18 +762,40 @@ public class DungeonController {
         dialog.show();
 	}
 	
+	public void displayNoKey() {
+		final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(dungeonStage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("You have no key! please find the correct key!"));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
+	}
+	
 	public void addEntity(Key key) {
 		ObservableList<Node> childrens = squares.getChildren();
     	if (childrens.size() == 0) {
-    		System.out.println("no nodes");
+    		//System.out.println("no nodes");
     	}
     	for(Node node : childrens) {
-    		System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
+    		//System.out.println("x is: " + squares.getRowIndex(node) + "y is: " + squares.getRowIndex(node));
     	    if(node instanceof ImageView && squares.getRowIndex(node) == key.getX() && squares.getColumnIndex(node) == key.getY()) {
     	        squares.add((key).getImageView(), squares.getRowIndex(node), squares.getColumnIndex(node));
     	        break;
     	    }
     	}
+	}
+	
+	public void finishExit() {
+		final Stage dialog = new Stage();
+        dialog.initModality(Modality.APPLICATION_MODAL);
+        dialog.initOwner(dungeonStage);
+        VBox dialogVbox = new VBox(20);
+        dialogVbox.getChildren().add(new Text("Please finish the other goal first!"));
+        Scene dialogScene = new Scene(dialogVbox, 300, 200);
+        dialog.setScene(dialogScene);
+        dialog.show();
 	}
 }
 

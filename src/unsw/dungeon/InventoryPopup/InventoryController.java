@@ -84,16 +84,16 @@ public class InventoryController implements Initializable{
 		}
 		for (Entity item: inventory) {
 			if (item instanceof Key) {
-				ImageView kImage = new ImageView(new Image("/key.png"));
+				ImageView kImage = new ImageView(new Image("/images/key.png"));
 				items.add(new Item(kImage, ((Key)item).getID(), -1));
 			}	else if (item instanceof Treasure) {
-				ImageView tImage = new ImageView(new Image("/gold_pile.png"));
+				ImageView tImage = new ImageView(new Image("/images/gold_pile.png"));
 				items.add(new Item(tImage, 0, 0));
 			}	else if (item instanceof Sword) {
-				ImageView sImage = new ImageView(new Image("/greatsword_1_new.png"));
+				ImageView sImage = new ImageView(new Image("/images/greatsword_1_new.png"));
 				items.add(new Item(sImage, 0, ((Sword)item).getDurability()));
 			}	else if (item instanceof Potion) {
-				ImageView pImage = new ImageView(new Image("/brilliant_blue_new.png"));
+				ImageView pImage = new ImageView(new Image("/images/brilliant_blue_new.png"));
 				items.add(new Item(pImage, 0, ((Potion)item).getDuration()));
 			}	else if (item instanceof Staff) {
 				System.
@@ -102,27 +102,27 @@ public class InventoryController implements Initializable{
 				System.out.println("staff type is: ??????????" + type);
 				switch (type) {
 				case "bloodair":
-					ImageView baImage = new ImageView(new Image("/bloodair.png"));
+					ImageView baImage = new ImageView(new Image("/images/bloodair.png"));
 					items.add(new Item(baImage, 0, 1));
 					break;
 				case "bloodwater":
-					ImageView bwImage = new ImageView(new Image("/bloodwater.png"));
+					ImageView bwImage = new ImageView(new Image("/images/bloodwater.png"));
 					items.add(new Item(bwImage, 0, 1));
 					break;
 				case "bloodfire":
-					ImageView bfImage = new ImageView(new Image("/bloodfire.png"));
+					ImageView bfImage = new ImageView(new Image("/images/bloodfire.png"));
 					items.add(new Item(bfImage, 0, 1));
 					break;
 				case "manaair":
-					ImageView maImage = new ImageView(new Image("/manaair.png"));
+					ImageView maImage = new ImageView(new Image("/images/manaair.png"));
 					items.add(new Item(maImage, 0, 1));
 					break;
 				case "manawater":
-					ImageView mwImage = new ImageView(new Image("/manawater.png"));
+					ImageView mwImage = new ImageView(new Image("/images/manawater.png"));
 					items.add(new Item(mwImage, 0, 1));
 					break;
 				case "manafire":
-					ImageView mfImage = new ImageView(new Image("/manafire.png"));
+					ImageView mfImage = new ImageView(new Image("/images/manafire.png"));
 					items.add(new Item(mfImage, 0, 1));
 					break;
 				default:

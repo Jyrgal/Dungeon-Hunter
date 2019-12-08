@@ -131,7 +131,7 @@ public abstract class Entity implements entitySubject{
     @Override
     public void notifyEntityObserver(Dungeon dungeon, boolean complete) {
     	for (entityObserver observer: observers) {
-    			System.out.println("telling observer");
+    			//System.out.println("telling observer");
     			observer.updateEntityObserver(dungeon, this, complete);
     	}
     }

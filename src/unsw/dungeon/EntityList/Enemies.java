@@ -128,4 +128,8 @@ public class Enemies extends Entity implements playerObserver {
 		this.currState = freeze;
 	}
 	
+	public void randomMove(Dungeon dungeon) {
+		this.run.move(dungeon, this);
+	}
+	
 }

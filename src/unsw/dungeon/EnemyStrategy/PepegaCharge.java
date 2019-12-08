@@ -79,19 +79,16 @@ public class PepegaCharge extends PathFind implements enemyState{
 		int playerPosition = playerX + (playerY * dungeon.getWidth());
 		this.portalPoints = dungeon.getPortals();
 
-		System.out.println(Integer.MAX_VALUE);
+		//System.out.println(Integer.MAX_VALUE);
 		V = dungeon.getHeight() * dungeon.getWidth();
 		int distance = calculateDistance(dungeon.getMatrix(), enemyPosition, playerPosition, dungeon);
 		if (distance == Integer.MAX_VALUE) {
-			System.out.println("CANT FIND PATH");
+			//System.out.println("CANT FIND PATH");
+			enemy.randomMove(dungeon);
 			return;
 		}
 		
 		
-		for (Integer path: finalPath) {
-			Point2D point = dungeon.convertInteger(path);
-			System.out.println("final path is" + (int)point.getX() + ":" + (int)point.getY());
-		}
 		dijkstra(dungeon.getMatrix(), enemyPosition, playerPosition, dungeon);
 		int nextMove = finalPath.get(1);
 		Point2D newCoordinate = dungeon.convertInteger(nextMove);

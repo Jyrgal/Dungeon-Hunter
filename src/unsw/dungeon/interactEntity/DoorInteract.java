@@ -26,6 +26,10 @@ public class DoorInteract implements Interact {
 		Door door = (Door)entity;
 		
 		//no key and door is locked
+		if (player.haveKey() == false && door.checkLocked() == true) {
+			dungeon.displayNoKey();
+			return false;
+		}
 		if(player.findKey(door) == false && door.checkLocked() == true) {
 			dungeon.displayKeyError();
 			return false;

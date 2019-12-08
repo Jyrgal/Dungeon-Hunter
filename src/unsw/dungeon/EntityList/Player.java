@@ -111,6 +111,15 @@ public class Player extends Entity implements playerSubject{
     	}
     	return false;
     }
+    
+    public boolean haveKey() {
+    	for (Entity item: inventory) {
+    		if (item instanceof Key) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
 
     /**
      * Use the respective key on the door

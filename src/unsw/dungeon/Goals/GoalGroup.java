@@ -6,8 +6,11 @@ import java.util.List;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import unsw.dungeon.Entity;
+import unsw.dungeon.EntityList.Player;
+import unsw.dungeon.observerEntity.entityObserver;
+import unsw.dungeon.observerPlayer.playerObserver;
 
-public class GoalGroup extends GoalComponent {
+public class GoalGroup extends GoalComponent implements playerObserver{
 
 	ArrayList<GoalComponent> goals;
 	
@@ -17,8 +20,8 @@ public class GoalGroup extends GoalComponent {
 		this.NeedComplete.set(needComplete);
 		this.Completed.set(false);
 		goals = new ArrayList<GoalComponent>();
-		System.out.println("makign goal group");
-		System.out.println(needComplete + " to finish off");
+		//System.out.println("makign goal group");
+		//System.out.println(needComplete + " to finish off");
 	}
 	
 	@Override
@@ -64,13 +67,28 @@ public class GoalGroup extends GoalComponent {
 	
 	@Override
 	public boolean checkGoalExit(Dungeon dungeon) {
-//		for (GoalComponent goal: goals) {
-//			//check that nonexit goals are all complete
-//			if (goal.checkExit(dungeon) == false && goal.isCompleted() == false){
-//				return false;
-//			}
-//		}
-		return true;
+		for (GoalComponent goal: goals) {
+			//check that nonexit goals are all complete
+			if (goal instanceof Goal) {
+				if (((Goal) goal).getTypeEntity().contentEquals("exit")) {
+					//System.out.println("found exit goal");
+					return ((Goal)goal).checkGoalExit(dungeon);
+				}
+			}	else {
+				return goal.checkGoalExit(dungeon);
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public GoalComponent findGoalExit(Dungeon dungeon) {
+		for (GoalComponent goal: goals) {
+			if (goal.findGoalExit(dungeon) != null) {
+				return goal.findGoalExit(dungeon);
+			}
+		}
+		return null;
 	}
 	
 
@@ -89,5 +107,37 @@ public class GoalGroup extends GoalComponent {
 			}
 		}
 		return newGoals;
+	}
+	
+
+	@Override
+	public void updateObserver(Player player, Dungeon dungeon) {
+		boolean check = false;
+		Goal exitGoal = null;
+		
+		for (GoalComponent goal: goals) {
+			if (goal instanceof Goal) {		
+				//System.out.println("goal is currently: " + ((Goal) goal).getTypeEntity());
+				if (((Goal) goal).getTypeEntity().contentEquals("exit")) {
+					//System.out.println("exit goal: " + ((Goal) goal).getTypeEntity());
+					exitGoal = (Goal)goal;
+					if (this.NeedComplete.get() == 1) {
+						//System.out.println("or statement for exit: should be 0 ");
+						goal.setCompleted(true);
+						check = false;
+					}
+				}	else if (goal.isCompleted()) {
+					//System.out.println("other goal other than exit is finished, exit should be 0");
+					check = true;
+				}	
+			}	
+			
+			
+		}
+		if (check && exitGoal != null) {
+			//exitGoal.setCompleted(true);
+			exitGoal.NeedComplete.set(0);
+		}
+		
 	}
 }

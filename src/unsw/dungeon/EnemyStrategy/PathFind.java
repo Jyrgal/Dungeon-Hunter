@@ -248,10 +248,10 @@ public abstract class PathFind {
     // A utility function to print the constructed distance array 
     int printSolution(int dist[], int destination) 
     { 
-        System.out.println("Vertex \t\t Distance from Source"); 
+        //System.out.println("Vertex \t\t Distance from Source"); 
         for (int i = 0; i < V; i++) 
         	if (i == destination) {
-        		System.out.println(i + " \t\t " + dist[i]); 
+        		//System.out.println(i + " \t\t " + dist[i]); 
         		return dist[i];
         	}
         

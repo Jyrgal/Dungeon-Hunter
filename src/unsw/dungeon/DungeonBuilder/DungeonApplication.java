@@ -21,7 +21,7 @@ public class DungeonApplication extends Application {
     	this.primaryStage = primaryStage;
         primaryStage.setTitle("Dungeon");
 
-        String s = new String("switchdoor.json");
+        String s = new String("test.json");
 
         DungeonControllerLoader dungeonLoader = new DungeonControllerLoader(s);
 

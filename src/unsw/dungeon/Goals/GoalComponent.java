@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 import unsw.dungeon.Dungeon;
 import unsw.dungeon.Entity;
+import unsw.dungeon.EntityList.Player;
 import unsw.dungeon.observerEntity.entityObserver;
 
 
@@ -50,6 +51,10 @@ public abstract class GoalComponent {
 	}
 	
 	public ArrayList<GoalComponent> getSingleGoals() {
+		throw new UnsupportedOperationException();
+	}
+	
+	public GoalComponent findGoalExit(Dungeon dungeon) {
 		throw new UnsupportedOperationException();
 	}
 }

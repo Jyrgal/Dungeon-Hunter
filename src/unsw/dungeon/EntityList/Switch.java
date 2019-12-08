@@ -24,13 +24,13 @@ public class Switch extends Entity {
      * @param dungeon, the dungeon spwaned for the player
      */
 	public void activate(Dungeon dungeon) {
-		System.out.println("switch Activate!");
+		//System.out.println("switch Activate!");
 		this.setActivated(true);
 		notifyEntityObserver(dungeon, true);
 	}
 	
 	public void deactivate(Dungeon dungeon) {
-		System.out.println("switch Deactivate!");
+		//System.out.println("switch Deactivate!");
 		this.setActivated(false);
 		notifyEntityObserver(dungeon, false);
 	}

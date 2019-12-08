@@ -71,28 +71,28 @@ public class DungeonControllerLoader extends DungeonLoader {
             throws FileNotFoundException {
         super(filename);
         entities = new ArrayList<>();
-        playerImage = new Image("/nakedman.png");
-        wallImage1 = new Image("/yellowtree.png");
-        wallImage2 = new Image("/orangetree.png");
-        wallImage3 = new Image("/greentree.png");
-        exitImage = new Image("/exit.png");
-        treasureImage = new Image("/Treasure Chest closed 32x32.png");
-        doorcloseImage = new Image("/closedoor.png");
-        dooropenImage = new Image("/opendoor.png");
-        keyImage = new Image("/key.png");
-        boulderImage = new Image("/boulder.png");
-        floorswitchImage = new Image("/pressure_plate.png");
-        portalImage = new Image("/portal.png");
-        enemyImage = new Image("/enemyaxe.png");
-        swordImage = new Image("/bigsword.png");
-        potionImage = new Image("/brilliant_blue_new.png");
-        bloodImage = new Image("/blood.png");
-        manaImage = new Image("/mana.png");
-        rodImage = new Image("/rod.png");
-        fireImage = new Image("/fire.png");
-        airImage = new Image("/air.png");
-        waterImage = new Image("/water.png");
-        wizardImage = new Image("/wizard.png");
+        playerImage = new Image("/images/nakedman.png");
+        wallImage1 = new Image("/images/yellowtree.png");
+        wallImage2 = new Image("/images/orangetree.png");
+        wallImage3 = new Image("/images/greentree.png");
+        exitImage = new Image("/images/exit.png");
+        treasureImage = new Image("/images/Treasure Chest closed 32x32.png");
+        doorcloseImage = new Image("/images/closedoor.png");
+        dooropenImage = new Image("/images/opendoor.png");
+        keyImage = new Image("/images/key.png");
+        boulderImage = new Image("/images/boulder.png");
+        floorswitchImage = new Image("/images/pressure_plate.png");
+        portalImage = new Image("/images/portal.png");
+        enemyImage = new Image("/images/enemyaxe.png");
+        swordImage = new Image("/images/bigsword.png");
+        potionImage = new Image("/images/brilliant_blue_new.png");
+        bloodImage = new Image("/images/blood.png");
+        manaImage = new Image("/images/mana.png");
+        rodImage = new Image("/images/rod.png");
+        fireImage = new Image("/images/fire.png");
+        airImage = new Image("/images/air.png");
+        waterImage = new Image("/images/water.png");
+        wizardImage = new Image("/images/wizard.png");
         squares = new GridPane();
     }
 
@@ -164,9 +164,9 @@ public class DungeonControllerLoader extends DungeonLoader {
     
     @Override
     public void onLoad(Sword sword) {
-    	System.out.println("fucked");
+    	//System.out.println("fucked");
         ImageView view = new ImageView(swordImage);
-        System.out.println("addedimage");
+        //System.out.println("addedimage");
         addEntity(sword, view);
     }
     
@@ -179,11 +179,11 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
     public void onLoad(Crystal crystal) {
     	if (crystal.getCrystal().contentEquals("blood")) {
-    		System.out.println("putting blood");
+    		//System.out.println("putting blood");
     		ImageView view = new ImageView(bloodImage);
             addEntity(crystal, view);
     	}	else if (crystal.getCrystal().contentEquals("mana")) {
-    		System.out.println("putting mana");
+    		//System.out.println("putting mana");
     		ImageView view = new ImageView(manaImage);
             addEntity(crystal, view);
     	}
@@ -198,15 +198,15 @@ public class DungeonControllerLoader extends DungeonLoader {
     @Override
 	public void onLoad(Element element) {
     	if (element.getElement().contentEquals("fire")) {
-    		System.out.println("putting fire");
+    		//System.out.println("putting fire");
     		ImageView view = new ImageView(fireImage);
             addEntity(element, view);
     	}	else if (element.getElement().contentEquals("air")) {
-    		System.out.println("putting air");
+    		//System.out.println("putting air");
     		ImageView view = new ImageView(airImage);
             addEntity(element, view);
     	}	else if (element.getElement().contains("water")) {
-    		System.out.println("putting water");
+    		//System.out.println("putting water");
     		ImageView view = new ImageView(waterImage);
     		addEntity(element, view);
     	}
@@ -274,19 +274,17 @@ public class DungeonControllerLoader extends DungeonLoader {
     }
     
     public void removeEntity(Entity entity) {
-    	if (entity instanceof Sword) {
-    		System.out.println("works fine?");
-    	}
+
 
     	this.removeNodeByRowColumnIndex(entity.getX(), entity.getY(), entity.getImageView());
     	//squares.getChildren().remove(entityImage);
     }
     
     public void removeNodeByRowColumnIndex(final int row,final int column, ImageView image) {
-    	System.out.println("entered function");
+    	//System.out.println("entered function");
     	ObservableList<Node> childrens = squares.getChildren();
     	if (childrens.size() == 0) {
-    		System.out.println("no nodes");
+    		//System.out.println("no nodes");
     	}
     	
     	for(Iterator<Node> itr = childrens.iterator(); itr.hasNext();){            
